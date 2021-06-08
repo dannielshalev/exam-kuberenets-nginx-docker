@@ -8,7 +8,8 @@ pipeline {
               sh '''/bin/bash
                   set -e
                   echo $BUILD_NUMBER
-                  sh 'bash update_website.sh $BUILD_NUMBER
+                  bash update_website.sh $BUILD_NUMBER
+                  cat update_website.sh
                   '''
             }
         }
