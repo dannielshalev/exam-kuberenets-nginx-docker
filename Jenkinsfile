@@ -32,7 +32,7 @@ pipeline {
                     set -e
                     echo $ARTIFACTORY_PASS > .kubeconfig
                     export KUBECONFIG=.kubeconfig
-                    kubectl apply .
+                    helm install danniel-app
                     '''
                 }
             }
