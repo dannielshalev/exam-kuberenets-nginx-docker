@@ -9,7 +9,7 @@ pipeline {
                   set -e
                   echo $BUILD_NUMBER
                   bash update_website.sh $BUILD_NUMBER
-                  cat update_website.sh
+                  cat index.html
                   '''
             }
         }
