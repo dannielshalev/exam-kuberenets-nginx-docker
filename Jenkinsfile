@@ -19,7 +19,7 @@ pipeline {
               withCredentials([string(credentialsId: 'kubeconfig', variable: 'kubeconfig')]){
                 sh '''/bin/bash
                     set -e
-                    echo $ARTIFACTORY_PASS > .kubeconfig
+                    echo $kubeconfig > .kubeconfig
                     export KUBECONFIG=.kubeconfig
                     helm install danniel-app
                     '''
