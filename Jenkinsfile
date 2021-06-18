@@ -11,7 +11,6 @@ def build_image(String build) {
 pipeline {
     agent any
     environment {
-        KUBECONFIG = credentials('kubeconfig')
         DOKERHUB = credentials('duckerhub')
     }
     stages {
