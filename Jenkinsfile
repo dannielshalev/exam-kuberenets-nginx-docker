@@ -1,7 +1,7 @@
+def registry = "7879/exam-webserver"
+def registryCredential = 'guitar'
 pipeline {
     agent any
-    def registry = "7879/exam-webserver"
-    def registryCredential = 'guitar'
     stages {
         stage('Building image') {
             steps{
