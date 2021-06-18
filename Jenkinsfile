@@ -1,6 +1,8 @@
 def registry = "7879/exam-webserver"
 def registryCredential = 'guitar'
 
+def dockerHome = env.PATH 'myDocker/bin:${env.PATH}'
+
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
     def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./dockerfiles")
@@ -10,12 +12,6 @@ def build_image(String build) {
 pipeline {
     agent any
     stages {
-         stage('Initialize'){
-            steps{
-                def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }
-         }
         stage('Building image') {
             steps{
                 script {
