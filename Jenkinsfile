@@ -1,10 +1,9 @@
 def registry = "7879/exam-webserver"
-
 def registryCredential = 'guitar'
-def dockerfile = 'Dockerfile'
 
 def build_image(String build) {
-    def customImage = docker.build("7879/exam-webserver:${env.build}", "-f ${dockerfile} ./dockerfiles")
+    def dockerfile = 'Dockerfile'
+    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./dockerfiles")
     customImage.push()
 }
 
