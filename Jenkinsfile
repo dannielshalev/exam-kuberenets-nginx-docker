@@ -18,7 +18,7 @@ pipeline {
                 script {
 //                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh "bash update_website.sh $BUILD_NUMBER"
-                    build_image("$BUILD_NUMBER")
+//                    build_image("$BUILD_NUMBER")
                 }
             }
         }
