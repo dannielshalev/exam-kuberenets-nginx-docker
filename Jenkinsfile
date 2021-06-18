@@ -19,7 +19,7 @@ pipeline {
                 script {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    sh "systemctl start docker"
+                    sh "service start docker"
                     sh "gpasswd -a $USER docker"
                     }
                 }
