@@ -4,7 +4,7 @@ def registryCredential = 'guitar'
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
-    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./${dockerfile}")
+    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} $WORKSPACE/${dockerfile}")
     customImage.push()
 }
 
