@@ -17,10 +17,12 @@ pipeline {
     stages {
         stage('Building image') {
             steps{
+                script{
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     }
                 }
+            }
         stage('Building image') {
             steps{
               sh '''/bin/bash
