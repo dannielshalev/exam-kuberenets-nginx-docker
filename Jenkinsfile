@@ -2,7 +2,7 @@
 //
 //def registryCredential = 'guitar'
 //
-def dockerHome = tool 'myDocker'
+//def dockerHome = tool 'myDocker'
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
@@ -16,6 +16,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
+                    def dockerHome = tool 'myDocker'
 //                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh "bash update_website.sh $BUILD_NUMBER"
 //                    build_image("$BUILD_NUMBER")
