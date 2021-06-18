@@ -30,10 +30,10 @@ pipeline {
                   sudo docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
                   docker push ${DOKERHUB_USR}:exam-webserver:$BUILD_NUMBER
                   '''
-                }
             }
         }
     }
 }
+
 
 
