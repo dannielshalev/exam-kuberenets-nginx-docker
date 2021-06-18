@@ -7,13 +7,10 @@ pipeline {
             steps{
                 script {
                     sh "bash update_website.sh $BUILD_NUMBER"
-                    sh "cat index.html"
-
                 }
-
-            dockerfile {
-                filename 'Dockerfile'
-                }
+            def dockerfile = 'Dockerfile'
+            def customImage = docker.build("7879/exam-webserver:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles")
+            customImage.push()
             }
         }
     }
