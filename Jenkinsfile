@@ -15,9 +15,9 @@ pipeline {
         DOKERHUB = credentials('duckerhub')
     }
     stages {
-        stage('Building image') {
+        stage('Initialize') {
             steps{
-                script{
+                script {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     }
