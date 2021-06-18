@@ -1,8 +1,6 @@
-//def registry = "7879/exam-webserver"
-//
-//def registryCredential = 'guitar'
-//
-//def dockerHome = tool 'myDocker'
+def registry = "7879/exam-webserver"
+
+def registryCredential = 'guitar'
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
@@ -17,7 +15,7 @@ pipeline {
             steps{
                 script {
                     def dockerHome = tool 'myDocker'
-//                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh "bash update_website.sh $BUILD_NUMBER"
 //                    build_image("$BUILD_NUMBER")
                 }
