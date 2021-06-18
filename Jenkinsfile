@@ -1,14 +1,14 @@
-def registry = "7879/exam-webserver"
-
-def registryCredential = 'guitar'
-
-def dockerHome = tool 'myDocker'
-
-def build_image(String build) {
-    def dockerfile = 'Dockerfile'
-    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./dockerfiles")
-    customImage.push()
-}
+//def registry = "7879/exam-webserver"
+//
+//def registryCredential = 'guitar'
+//
+//def dockerHome = tool 'myDocker'
+//
+//def build_image(String build) {
+//    def dockerfile = 'Dockerfile'
+//    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./dockerfiles")
+//    customImage.push()
+//}
 
 pipeline {
     agent any
