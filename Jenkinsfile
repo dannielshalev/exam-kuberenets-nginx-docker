@@ -8,7 +8,7 @@ pipeline {
             steps{
                 script {
                     sh "./update_website.sh $BUILD_NUMBER"
-                    docker.build registry + ":$BUILD_NUMBER"
+//                    docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
