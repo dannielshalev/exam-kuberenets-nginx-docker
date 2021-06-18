@@ -31,7 +31,7 @@ pipeline {
                   bash update_website.sh $BUILD_NUMBER
                   docker login -u ${DOKERHUB_USR} -p ${DOKERHUB_PSW}
                   eval "$(docker-machine env default)"
-                  sudo docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
+                  docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
                   docker push ${DOKERHUB_USR}:exam-webserver:$BUILD_NUMBER
                   '''
             }
