@@ -6,7 +6,9 @@ pipeline {
     stages {
         stage('Building image') {
             steps{
-                    sh "./update_website.sh $BUILD_NUMBER"
+                    sh '''/bin/bash
+                    bash update_website.sh $BUILD_NUMBER
+                    '''
 //                    docker.build registry + ":$BUILD_NUMBER"
                 }
             }
