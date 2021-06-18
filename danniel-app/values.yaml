@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: 7879/danniel-webserver:11
+  repository: docker.io/7879/exam-webserver
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "11"
 
 imagePullSecrets: []
 nameOverride: ""
