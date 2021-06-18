@@ -17,6 +17,8 @@ pipeline {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh "bash update_website.sh $BUILD_NUMBER"
+                    sh "ls -ltr"
+                    sh "pwd"
                     build_image("$BUILD_NUMBER")
                 }
             }
