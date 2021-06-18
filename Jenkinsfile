@@ -1,7 +1,8 @@
 def registry = "7879/exam-webserver"
+
 def registryCredential = 'guitar'
 
-def dockerHome = env.PATH 'myDocker/bin:${env.PATH}'
+def dockerHome = tool 'myDocker'
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
@@ -15,6 +16,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     sh "bash update_website.sh $BUILD_NUMBER"
                     sh "curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
                         && tar xzvf docker-17.04.0-ce.tgz \
