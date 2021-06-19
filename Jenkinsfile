@@ -29,6 +29,7 @@ pipeline {
                   bash update_website.sh $BUILD_NUMBER
                   docker --version
                   docker login -u ${DOKERHUB_USR} -p ${DOKERHUB_PSW}
+                  sleep 600
                   # eval "$(docker-machine env default)"
                   docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
                   docker push ${DOKERHUB_USR}:exam-webserver:$BUILD_NUMBER
