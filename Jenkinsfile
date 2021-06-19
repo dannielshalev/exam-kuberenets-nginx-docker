@@ -1,15 +1,3 @@
-//def registry = "7879/exam-webserver"
-//
-//def registryCredential = 'guitar'
-//
-
-
-def build_image(String build) {
-    def dockerfile = 'Dockerfile'
-    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} $WORKSPACE/")
-    customImage.push()
-}
-
 pipeline {
     agent any
     environment {
@@ -24,12 +12,15 @@ pipeline {
                     }
                 }
             }
-        stage('Building image') {
+         stage('build docker image') {
             steps {
-                script {
-                    sh "bash update_website.sh $BUILD_NUMBER"
-                    build_image("$BUILD_NUMBER")
-                }
+              sh '''/bin/bash
+                  set -e
+                  bash update_website.sh $BUILD_NUMBER
+                  docker login -u ${DOKERHUB_USR} -p ${DOKERHUB_PSW}
+                  sudo docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
+                  docker push ${DOKERHUB_USR}:exam-webserver:$BUILD_NUMBER
+                  '''
             }
         }
     }
