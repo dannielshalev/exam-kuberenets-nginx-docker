@@ -1,43 +1,29 @@
-def registry = "7879/exam-webserver"
-
-def registryCredential = 'guitar'
+//def registry = "7879/exam-webserver"
+//
+//def registryCredential = 'guitar'
+//
+def dockerHome = tool 'myDocker'
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
-    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} $WORKSPACE/${dockerfile}")
+    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} ./dockerfiles")
     customImage.push()
 }
 
 pipeline {
     agent any
-    environment {
-        DOKERHUB = credentials('duckerhub')
-    }
     stages {
-        stage('Initialize') {
-            steps{
-                script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    }
-                }
-            }
         stage('Building image') {
             steps{
-              sh '''/bin/bash
-                  set -e
-                  bash update_website.sh $BUILD_NUMBER
-                  docker --version
-                  sleep 600
-                  docker login -u ${DOKERHUB_USR} -p ${DOKERHUB_PSW}
-                  # eval "$(docker-machine env default)"
-                  docker build -t ${DOKERHUB_USR}/exam-webserver:$BUILD_NUMBER .
-                  docker push ${DOKERHUB_USR}:exam-webserver:$BUILD_NUMBER
-                  '''
+                script {
+                def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    sh "bash update_website.sh $BUILD_NUMBER"
+//                    build_image("$BUILD_NUMBER")
+                }
             }
         }
     }
 }
-
 
 
