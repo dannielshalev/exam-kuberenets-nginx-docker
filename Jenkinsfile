@@ -6,7 +6,7 @@
 
 def build_image(String build) {
     def dockerfile = 'Dockerfile'
-    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} $PWD/dockerfiles")
+    def customImage = docker.build("7879/exam-webserver:${build}", "-f ${dockerfile} $WORKSPACE/dockerfiles")
     customImage.push()
 }
 
