@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     sh "bash update_website.sh $BUILD_NUMBER"
-//                    build_image("$BUILD_NUMBER")
+                    build_image("$BUILD_NUMBER")
                 }
             }
         }
