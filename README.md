@@ -1,1 +1,1 @@
-# exam-kuberenets-nginx-docker
+# kuberenets-nginx-docker
